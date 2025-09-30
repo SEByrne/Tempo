@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .contact-section {
+            background: #f0f8ff;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .contact-section p {
+            margin-bottom: 12px;
+            color: #666;
+        }
+
+        .email-button {
+            display: inline-block;
+            background: #0078d4;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .email-button:hover {
+            background: #106ebe;
+        }
+
+        .faq-section {
+            padding: 30px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 18px 0;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #0078d4;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: #0078d4;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 0 20px 0;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions below</p>
+        </div>
+
+        <div class="contact-section">
+            <p>Can't find what you're looking for?</p>
+            <a href="mailto:askit@somecompany.com" class="email-button">Email Us: askit@somecompany.com</a>
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <button class="faq-question">
+                    How do I reset my password?
+                </button>
+                <div class="faq-answer">
+                    <p>To reset your password, go to the login page and click on "Forgot Password". Enter your email address and you'll receive instructions to create a new password within a few minutes.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How can I access shared documents?
+                </button>
+                <div class="faq-answer">
+                    <p>Shared documents can be accessed through the Documents library in your SharePoint site. Navigate to the site, click on "Documents" in the left menu, and you'll see all files shared with you.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Who do I contact for technical support?
+                </button>
+                <div class="faq-answer">
+                    <p>For technical support, please email our IT team at askit@somecompany.com or call the helpdesk at extension 1234. Our team is available Monday through Friday, 8 AM to 5 PM.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How do I request access to a site?
+                </button>
+                <div class="faq-answer">
+                    <p>To request access to a site, click the "Request Access" button on the site's homepage. Your request will be sent to the site administrator for approval. You'll receive an email notification once your access has been granted.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I customize my SharePoint homepage?
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! If you have edit permissions, click the "Edit" button in the top right corner of your homepage. You can add, remove, or rearrange web parts to customize your experience. Don't forget to save your changes when you're done.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = document.querySelectorAll('.faq-question');
+        
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other answers
+                questions.forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current answer
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+    </script>
